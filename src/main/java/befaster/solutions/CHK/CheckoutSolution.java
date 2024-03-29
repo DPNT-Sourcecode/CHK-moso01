@@ -111,7 +111,7 @@ public class CheckoutSolution {
         finalPositionGroup = finalPositionGroup > 0 ? finalPositionGroup + 1 : 0;
         System.out.println(finalPositionGroup);
         System.out.println(skus.length());
-        if (finalPositionGroup < skus.length()) {
+        if (skus.length() < 4 && finalPositionGroup < skus.length()) {
             for (int i = finalPositionGroup; i < skus.length(); i++) {
                 String iten = String.valueOf(skus.charAt(i));
                 switch (iten) {
@@ -152,6 +152,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
