@@ -11,7 +11,7 @@ public class CheckoutSolution {
         int total = 0;
         Map<String, Integer> itens = new HashMap<>();
         for (int i = 0; i < skus.length(); i++) {
-            String iten = String.valueOf(i);
+            String iten = String.valueOf(skus.charAt(i));
             if (itens.get(iten) != null) {
                 int quant = itens.get(iten);
                 quant++;
@@ -43,4 +43,5 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
