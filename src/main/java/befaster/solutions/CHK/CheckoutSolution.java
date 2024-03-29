@@ -65,8 +65,22 @@ public class CheckoutSolution {
                     total += this.specialOffer(quant, 3, 30, 80);
                 }
                 case "R" -> total += itens.get(sku) * 50;  // Offer in Q
-                case "S" -> total += itens.get(sku) * 30;
-                case "T" -> total += itens.get(sku) * 20;
+                case "S" -> {
+                    priceUpdate = itens.get(sku) != null;
+                    if (priceUpdate) {
+                        total += this.specialOffer(itens.get(sku), 3, 20, 45);
+                    } else {
+                        total += itens.get(sku) * 30;
+                    }
+                }
+                case "T" -> {
+                    priceUpdate = itens.get(sku) != null;
+                    if (priceUpdate) {
+                        total += this.specialOffer(itens.get(sku), 3, 20, 45);
+                    } else {
+                        total += itens.get(sku) * 20;
+                    }
+                }
                 case "U" -> {
                     if (itens.get(sku) >= 4) {
                         total += this.specialOffer(itens.get(sku), 4, 40, 120);
@@ -76,9 +90,30 @@ public class CheckoutSolution {
                 }
                 case "V" -> total += this.doubleSpecialOffer(itens.get(sku), 3, 2, 50, 130, 90);
                 case "W" -> total += itens.get(sku) * 20;
-                case "X" -> total += itens.get(sku) * 90;
-                case "Y" -> total += itens.get(sku) * 10;
-                case "Z" -> total += itens.get(sku) * 50;
+                case "X" -> {
+                    priceUpdate = itens.get(sku) != null;
+                    if (priceUpdate) {
+                        total += this.specialOffer(itens.get(sku), 3, 17, 45);
+                    } else {
+                        total += itens.get(sku) * 17;
+                    }
+                }
+                case "Y" -> {
+                    priceUpdate = itens.get(sku) != null;
+                    if (priceUpdate) {
+                        total += this.specialOffer(itens.get(sku), 3, 20, 45);
+                    } else {
+                        total += itens.get(sku) * 20;
+                    }
+                }
+                case "Z" -> {
+                    priceUpdate = itens.get(sku) != null;
+                    if (priceUpdate) {
+                        total += this.specialOffer(itens.get(sku), 3, 21, 45);
+                    } else {
+                        total += itens.get(sku) * 21;
+                    }
+                }
                 default -> {
                     return -1;
                 }
@@ -115,5 +150,6 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
