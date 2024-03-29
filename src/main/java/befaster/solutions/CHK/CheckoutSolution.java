@@ -11,7 +11,12 @@ public class CheckoutSolution {
         int total = 0;
         Map<String, Integer> itens = new HashMap<>();
         for (int i = 0; i < skus.length(); i++) {
-            String iten = String.valueOf(skus.charAt(i));
+            String iten;
+            try {
+                iten = String.valueOf(skus.charAt(i));
+            } catch (Exception e) {
+                return -1;
+            }
             if (itens.get(iten) != null) {
                 int quant = itens.get(iten);
                 quant++;
@@ -41,12 +46,17 @@ public class CheckoutSolution {
                 }
                 case "C" -> total += itens.get(sku) * 20;
                 case "D" -> total += itens.get(sku) * 15;
+                default -> {
+                    return -1;
+                }
             }
-            System.out.println("total: " + total);
+
         }
+        System.out.println("total: " + total);
         return total;
     }
 }
+
 
 
 
