@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        System.out.println("SKUS: " + skus);
         int total = 0;
         Map<String, Integer> itens = new HashMap<>();
         for (int i = 0; i < skus.length(); i++) {
@@ -28,7 +27,6 @@ public class CheckoutSolution {
             }
         }
         for (String sku : itens.keySet()) {
-            System.out.println(sku + ": " + itens.get(sku));
             switch (sku) {
                 case "A" -> total += this.doubleSpecialOffer(itens.get(sku), 5, 3, 50, 200, 130);
                 case "B" -> {
@@ -80,10 +78,8 @@ public class CheckoutSolution {
                     return -1;
                 }
             }
-            System.out.println("total: " + total);
         }
         total += this.verifyDescount(skus);
-        System.out.println("total final: " + total);
         return total;
     }
 
@@ -102,6 +98,7 @@ public class CheckoutSolution {
             }
         }
         finalPositionGroup = finalPositionGroup > 0 ? finalPositionGroup + 1 : 0;
+        System.out.println(finalPositionGroup);
         for (int i = finalPositionGroup; i < skus.length(); i++) {
             String iten = String.valueOf(skus.charAt(i));
             switch (iten) {
@@ -141,7 +138,3 @@ public class CheckoutSolution {
     }
 
 }
-
-
-
-
