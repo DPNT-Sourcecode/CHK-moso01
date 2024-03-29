@@ -44,7 +44,7 @@ public class CheckoutSolution {
                 case "E" -> {
                     int quantBFree = itens.get(sku) % 2;
                     total += itens.get(sku) * 40;
-                    if (itens.get("B") != null) {
+                    if (itens.get("B") != null && quantBFree > 0) {
                         if (quantBFree > itens.get("B")) {
                             total -= itens.get("B") * 30;
                         } else total -= quantBFree * 30;
@@ -60,6 +60,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 
