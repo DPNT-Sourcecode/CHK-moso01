@@ -84,6 +84,7 @@ public class CheckoutSolution {
     }
 
     private int verifyDescount(String skus) {
+        skus = new StringBuilder(skus).reverse().toString();
         int value = 0;
         int group = 0;
         int finalPositionGroup = 0;
@@ -141,4 +142,5 @@ public class CheckoutSolution {
     }
 
 }
+
 
