@@ -27,24 +27,29 @@ public class CheckoutSolution {
         }
         for (String sku : itens.keySet()) {
             System.out.println(sku + ": " + itens.get(sku));
-            int quantSpecialOffersOne;
-            int quantSpecialOffersTwo;
-            int quantNormalValue;
             switch (sku) {
                 case "A" -> {
-                    quantSpecialOffersOne = itens.get(sku) / 5;
-                    quantSpecialOffersTwo = (itens.get(sku) - quantSpecialOffersOne * 5) / 3;
-                    quantNormalValue = itens.get(sku) - quantSpecialOffersOne * 5 - quantSpecialOffersTwo * 3;
+                    int quantSpecialOffersOne = itens.get(sku) / 5;
+                    int quantSpecialOffersTwo = (itens.get(sku) - quantSpecialOffersOne * 5) / 3;
+                    int quantNormalValue = itens.get(sku) - quantSpecialOffersOne * 5 - quantSpecialOffersTwo * 3;
                     total += quantSpecialOffersOne * 200 + quantSpecialOffersTwo * 130 + quantNormalValue * 50;
                 }
                 case "B" -> {
-                    quantSpecialOffersOne = itens.get(sku) / 2;
-                    quantNormalValue = itens.get(sku) - quantSpecialOffersOne * 2;
-                    total += quantSpecialOffersOne * 45 + quantNormalValue * 30;
+                    int quantSpecialOffers = itens.get(sku) / 2;
+                    int quantNormalValue = itens.get(sku) - quantSpecialOffers * 2;
+                    total += quantSpecialOffers * 45 + quantNormalValue * 30;
                 }
                 case "C" -> total += itens.get(sku) * 20;
                 case "D" -> total += itens.get(sku) * 15;
-                case "E" -> total += itens.get(sku) * 40;
+                case "E" -> {
+                    int quantBFree = itens.get(sku) % 2;
+                    total += itens.get(sku) * 40;
+                    if (itens.get("B") != null) {
+                        if (quantBFree > itens.get("B")) {
+                            total -= itens.get("B") * 30;
+                        } else total -= quantBFree * 30;
+                    }
+                }
                 default -> {
                     return -1;
                 }
@@ -55,5 +60,6 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
