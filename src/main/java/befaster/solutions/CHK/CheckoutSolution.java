@@ -30,13 +30,13 @@ public class CheckoutSolution {
             switch (sku) {
                 case "A" -> total += this.doubleSpecialOffer(itens.get(sku), 5, 3, 50, 200, 130);
                 case "B" -> {
-                    int quantBFree = itens.get("E") != null ? itens.get("E") / 2 : 0;
-                    int quant = itens.get(sku) >= quantBFree ? itens.get(sku) - quantBFree : 0;
+                    int quantFree = itens.get("E") != null ? itens.get("E") / 2 : 0;
+                    int quant = itens.get(sku) >= quantFree ? itens.get(sku) - quantFree : 0;
                     total += this.specialOffer(quant, 2, 30, 45);
                 }
                 case "C" -> total += itens.get(sku) * 20;
                 case "D" -> total += itens.get(sku) * 15;
-                case "E" -> total += itens.get(sku) * 40;
+                case "E" -> total += itens.get(sku) * 40; // Offer in B
                 case "F" -> {
                     if (itens.get(sku) >= 3) {
                         total += this.specialOffer(itens.get(sku), 3, 10, 20);
@@ -44,6 +44,40 @@ public class CheckoutSolution {
                         total += itens.get(sku) * 10;
                     }
                 }
+                case "G" -> total += itens.get(sku) * 20;
+                case "H" -> total += this.doubleSpecialOffer(itens.get(sku), 10, 5, 10, 80, 45);
+                case "I" -> total += itens.get(sku) * 35;
+                case "J" -> total += itens.get(sku) * 60;
+                case "K" -> total += this.specialOffer(itens.get(sku), 2, 80, 150);
+                case "L" -> total += itens.get(sku) * 90;
+                case "M" -> {
+                    int quantFree = itens.get("N") != null ? itens.get("N") / 3 : 0;
+                    int quant = itens.get(sku) >= quantFree ? itens.get(sku) - quantFree : 0;
+                    total += quant * 15;
+                }
+                case "N" -> total += itens.get(sku) * 40;  // Offer in M
+                case "O" -> total += itens.get(sku) * 10;
+                case "P" -> total += this.specialOffer(itens.get(sku), 5, 50, 200);
+                case "Q" -> {
+                    int quantFree = itens.get("Q") != null ? itens.get("Q") / 3 : 0;
+                    int quant = itens.get(sku) >= quantFree ? itens.get(sku) - quantFree : 0;
+                    total += this.specialOffer(quant, 3, 30, 80);
+                }
+                case "R" -> total += itens.get(sku) * 50;  // Offer in Q
+                case "S" -> total += itens.get(sku) * 30;
+                case "T" -> total += itens.get(sku) * 20;
+                case "U" -> {
+                    if (itens.get(sku) >= 4) {
+                        total += this.specialOffer(itens.get(sku), 4, 40, 120);
+                    } else {
+                        total += itens.get(sku) * 40;
+                    }
+                }
+                case "V" -> total += this.doubleSpecialOffer(itens.get(sku), 3, 2, 50, 130, 90);
+                case "W" -> total += itens.get(sku) * 20;
+                case "X" -> total += itens.get(sku) * 90;
+                case "Y" -> total += itens.get(sku) * 10;
+                case "Z" -> total += itens.get(sku) * 50;
                 default -> {
                     return -1;
                 }
@@ -75,4 +109,5 @@ public class CheckoutSolution {
     }
 
 }
+
 
