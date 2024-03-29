@@ -35,28 +35,22 @@ public class CheckoutSolution {
                     total += quantSpecialOffersOne * 200 + quantSpecialOffersTwo * 130 + quantNormalValue * 50;
                 }
                 case "B" -> {
-                    int quantSpecialOffers = itens.get(sku) / 2;
-                    int quantNormalValue = itens.get(sku) - quantSpecialOffers * 2;
+                    int quantBFree = itens.get("E") / 2;
+                    int quantSpecialOffers = (itens.get(sku) - quantBFree) / 2;
+                    int quantNormalValue = (itens.get(sku) - quantBFree) - quantSpecialOffers * 2;
                     total += quantSpecialOffers * 45 + quantNormalValue * 30;
                 }
                 case "C" -> total += itens.get(sku) * 20;
                 case "D" -> total += itens.get(sku) * 15;
-                case "E" -> {
-                    int quantBFree = itens.get(sku) / 2;
-                    total += itens.get(sku) * 40;
-                    if (itens.get("B") != null && quantBFree > 0) {
-                        int quantSpecialOffers = quantBFree / 2;
-                        int quantNormalValue = quantBFree - quantSpecialOffers * 2;
-                        total -= quantSpecialOffers * 45 + quantNormalValue * 30;
-                    }
-                }
+                case "E" -> total += itens.get(sku) * 40;
                 default -> {
                     return -1;
                 }
             }
-
+            System.out.println("total: " + total);
         }
-        System.out.println("total: " + total);
+        System.out.println("total final: " + total);
         return total;
     }
 }
+
