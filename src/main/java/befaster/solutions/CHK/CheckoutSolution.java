@@ -27,23 +27,24 @@ public class CheckoutSolution {
         }
         for (String sku : itens.keySet()) {
             System.out.println(sku + ": " + itens.get(sku));
-            int quantSpecialOffers;
+            int quantSpecialOffersOne;
+            int quantSpecialOffersTwo;
             int quantNormalValue;
             switch (sku) {
                 case "A" -> {
-                    quantSpecialOffers = itens.get(sku) / 3;
-                    quantNormalValue = itens.get(sku) % 3;
-                    total += quantSpecialOffers * 130 + quantNormalValue * 50;
+                    quantSpecialOffersOne = itens.get(sku) / 5;
+                    quantSpecialOffersTwo = (itens.get(sku) - quantSpecialOffersOne * 5) / 3;
+                    quantNormalValue = itens.get(sku) - quantSpecialOffersOne * 5 - quantSpecialOffersTwo * 3;
+                    total += quantSpecialOffersOne * 200 + quantSpecialOffersTwo * 130 + quantNormalValue * 50;
                 }
                 case "B" -> {
-                    quantSpecialOffers = itens.get(sku) / 2;
-                    quantNormalValue = itens.get(sku) % 2;
-                    total += quantSpecialOffers * 45 + quantNormalValue * 30;
+                    quantSpecialOffersOne = itens.get(sku) / 2;
+                    quantNormalValue = itens.get(sku) - quantSpecialOffersOne * 2;
+                    total += quantSpecialOffersOne * 45 + quantNormalValue * 30;
                 }
                 case "C" -> total += itens.get(sku) * 20;
                 case "D" -> total += itens.get(sku) * 15;
                 case "E" -> {
-                    quantSpecialOffers = itens.get(sku) / 2;
                     quantNormalValue = itens.get(sku) % 2;
                     total += quantNormalValue * 40;
                 }
@@ -57,3 +58,4 @@ public class CheckoutSolution {
         return total;
     }
 }
+
