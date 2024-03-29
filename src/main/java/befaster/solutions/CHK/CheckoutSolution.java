@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
+        System.out.println(skus);
         int total = 0;
         Map<String, Integer> itens = new HashMap<>();
         for (int i = 0; i < skus.length(); i++) {
@@ -20,6 +21,8 @@ public class CheckoutSolution {
             }
         }
         for (String sku : itens.keySet()) {
+            System.out.println(sku);
+            System.out.println(itens.get(sku));
             int quantSpecialOffers;
             int quantNormalValue;
             switch (sku) {
@@ -36,8 +39,8 @@ public class CheckoutSolution {
                 case "C" -> total += itens.get(sku) * 20;
                 case "D" -> total += itens.get(sku) * 15;
             }
+            System.out.println(total);
         }
         return total;
     }
 }
-
