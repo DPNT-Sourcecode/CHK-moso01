@@ -2,7 +2,9 @@ package befaster.solutions.CHK;
 
 import befaster.runner.SolutionNotImplementedException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CheckoutSolution {
@@ -27,7 +29,6 @@ public class CheckoutSolution {
         }
         for (String sku : itens.keySet()) {
             System.out.println(sku + ": " + itens.get(sku));
-            boolean priceUpdate = false;
             switch (sku) {
                 case "A" -> total += this.doubleSpecialOffer(itens.get(sku), 5, 3, 50, 200, 130);
                 case "B" -> {
@@ -65,22 +66,6 @@ public class CheckoutSolution {
                     total += this.specialOffer(quant, 3, 30, 80);
                 }
                 case "R" -> total += itens.get(sku) * 50;  // Offer in Q
-                case "S" -> {
-                    priceUpdate = itens.get(sku) != null || priceUpdate;
-                    if (priceUpdate) {
-                        total += this.specialOffer(itens.get(sku), 3, 20, 45);
-                    } else {
-                        total += itens.get(sku) * 30;
-                    }
-                }
-                case "T" -> {
-                    priceUpdate = itens.get(sku) != null || priceUpdate;
-                    if (priceUpdate) {
-                        total += this.specialOffer(itens.get(sku), 3, 20, 45);
-                    } else {
-                        total += itens.get(sku) * 20;
-                    }
-                }
                 case "U" -> {
                     if (itens.get(sku) >= 4) {
                         total += this.specialOffer(itens.get(sku), 4, 40, 120);
@@ -90,38 +75,43 @@ public class CheckoutSolution {
                 }
                 case "V" -> total += this.doubleSpecialOffer(itens.get(sku), 3, 2, 50, 130, 90);
                 case "W" -> total += itens.get(sku) * 20;
-                case "X" -> {
-                    priceUpdate = itens.get(sku) != null || priceUpdate;
-                    if (priceUpdate) {
-                        total += this.specialOffer(itens.get(sku), 3, 17, 45);
-                    } else {
-                        total += itens.get(sku) * 17;
-                    }
-                }
-                case "Y" -> {
-                    priceUpdate = itens.get(sku) != null || priceUpdate;
-                    if (priceUpdate) {
-                        total += this.specialOffer(itens.get(sku), 3, 20, 45);
-                    } else {
-                        total += itens.get(sku) * 20;
-                    }
-                }
-                case "Z" -> {
-                    priceUpdate = itens.get(sku) != null || priceUpdate;
-                    if (priceUpdate) {
-                        total += this.specialOffer(itens.get(sku), 3, 20, 45);
-                    } else {
-                        total += itens.get(sku) * 21;
-                    }
-                }
                 default -> {
                     return -1;
                 }
             }
             System.out.println("total: " + total);
         }
+        total += this.verifyDescount(skus);
         System.out.println("total final: " + total);
         return total;
+    }
+
+    private int verifyDescount(String skus) {
+        int value = 0;
+        int group = 0;
+        int finalPositionGroup = 0;
+        List<String> list = List.of("S", "T", "X", "Y", "Z");
+        for (int i = 0; i < skus.length(); i++) {
+            String iten = String.valueOf(skus.charAt(i));
+            if (list.contains(iten)) group++;
+            if (group == 3) {
+                value += 45;
+                group = 0;
+                finalPositionGroup = i;
+            }
+        }
+        finalPositionGroup = finalPositionGroup > 0 ? finalPositionGroup + 1 : 0;
+        for (int i = finalPositionGroup; i < skus.length(); i++) {
+            String iten = String.valueOf(skus.charAt(i));
+            switch (iten) {
+                case "S" -> value += 20;
+                case "T" -> value += 20;
+                case "X" -> value += 17;
+                case "Y" -> value += 20;
+                case "Z" -> value += 21;
+            }
+        }
+        return value;
     }
 
     private int specialOffer(
@@ -150,5 +140,6 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
