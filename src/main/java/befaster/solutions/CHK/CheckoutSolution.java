@@ -49,7 +49,7 @@ public class CheckoutSolution {
                 case "H" -> total += this.doubleSpecialOffer(itens.get(sku), 10, 5, 10, 80, 45);
                 case "I" -> total += itens.get(sku) * 35;
                 case "J" -> total += itens.get(sku) * 60;
-                case "K" -> total += this.specialOffer(itens.get(sku), 2, 80, 150);
+                case "K" -> total += this.specialOffer(itens.get(sku), 2, 70, 120);
                 case "L" -> total += itens.get(sku) * 90;
                 case "M" -> {
                     int quantFree = itens.get("N") != null ? itens.get("N") / 3 : 0;
@@ -150,6 +150,3 @@ public class CheckoutSolution {
     }
 
 }
-
-
-
