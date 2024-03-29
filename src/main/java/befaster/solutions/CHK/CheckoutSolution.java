@@ -75,6 +75,7 @@ public class CheckoutSolution {
                 }
                 case "V" -> total += this.doubleSpecialOffer(itens.get(sku), 3, 2, 50, 130, 90);
                 case "W" -> total += itens.get(sku) * 20;
+                case "S", "T", "X", "Y", "Z" -> total += 0;
                 default -> {
                     return -1;
                 }
@@ -140,6 +141,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
