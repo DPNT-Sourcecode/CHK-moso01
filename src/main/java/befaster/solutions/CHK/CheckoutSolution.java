@@ -66,7 +66,7 @@ public class CheckoutSolution {
                 }
                 case "R" -> total += itens.get(sku) * 50;  // Offer in Q
                 case "S" -> {
-                    priceUpdate = itens.get(sku) != null;
+                    priceUpdate = itens.get(sku) != null || priceUpdate;
                     if (priceUpdate) {
                         total += this.specialOffer(itens.get(sku), 3, 20, 45);
                     } else {
@@ -74,7 +74,7 @@ public class CheckoutSolution {
                     }
                 }
                 case "T" -> {
-                    priceUpdate = itens.get(sku) != null;
+                    priceUpdate = itens.get(sku) != null || priceUpdate;
                     if (priceUpdate) {
                         total += this.specialOffer(itens.get(sku), 3, 20, 45);
                     } else {
@@ -91,7 +91,7 @@ public class CheckoutSolution {
                 case "V" -> total += this.doubleSpecialOffer(itens.get(sku), 3, 2, 50, 130, 90);
                 case "W" -> total += itens.get(sku) * 20;
                 case "X" -> {
-                    priceUpdate = itens.get(sku) != null;
+                    priceUpdate = itens.get(sku) != null || priceUpdate;
                     if (priceUpdate) {
                         total += this.specialOffer(itens.get(sku), 3, 17, 45);
                     } else {
@@ -99,20 +99,15 @@ public class CheckoutSolution {
                     }
                 }
                 case "Y" -> {
-                    priceUpdate = itens.get(sku) != null;
+                    priceUpdate = itens.get(sku) != null || priceUpdate;
                     if (priceUpdate) {
                         total += this.specialOffer(itens.get(sku), 3, 20, 45);
                     } else {
-                        total += itens.get(sku) * 20;
+
                     }
                 }
                 case "Z" -> {
-                    priceUpdate = itens.get(sku) != null;
-                    if (priceUpdate) {
-                        total += this.specialOffer(itens.get(sku), 3, 21, 45);
-                    } else {
-                        total += itens.get(sku) * 21;
-                    }
+                    total += itens.get(sku) * 21;
                 }
                 default -> {
                     return -1;
@@ -150,3 +145,4 @@ public class CheckoutSolution {
     }
 
 }
+
