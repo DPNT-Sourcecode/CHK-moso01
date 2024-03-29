@@ -84,15 +84,25 @@ public class CheckoutSolution {
     }
 
     private int verifyDescount(String skus) {
-        skus = new StringBuilder(skus).reverse().toString();
         int value = 0;
         int group = 0;
         int finalPositionGroup = 0;
         List<String> list = List.of("S", "T", "X", "Y", "Z");
         for (int i = 0; i < skus.length(); i++) {
             String iten = String.valueOf(skus.charAt(i));
-            if (list.contains(iten)) group++;
-            if (group == 3) {
+            if (list.contains(iten)) {
+                if (group == 0) {
+                    switch (iten) {
+                        case "S" -> value += 20;
+                        case "T" -> value += 20;
+                        case "X" -> value += 17;
+                        case "Y" -> value += 20;
+                        case "Z" -> value += 21;
+                    }
+                }
+                group++;
+            }
+            if (group == 4) {
                 value += 45;
                 group = 0;
                 finalPositionGroup = i;
@@ -142,5 +152,6 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
