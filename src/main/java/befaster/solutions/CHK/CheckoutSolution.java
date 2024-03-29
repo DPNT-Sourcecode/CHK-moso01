@@ -28,27 +28,18 @@ public class CheckoutSolution {
         for (String sku : itens.keySet()) {
             System.out.println(sku + ": " + itens.get(sku));
             switch (sku) {
-                case "A" -> {
-                    int quantSpecialOffersOne = itens.get(sku) / 5;
-                    int quantSpecialOffersTwo = (itens.get(sku) - quantSpecialOffersOne * 5) / 3;
-                    int quantNormalValue = itens.get(sku) - quantSpecialOffersOne * 5 - quantSpecialOffersTwo * 3;
-                    total += quantSpecialOffersOne * 200 + quantSpecialOffersTwo * 130 + quantNormalValue * 50;
-                }
+                case "A" -> total += this.doubleSpecialOffer(itens.get(sku), 5, 3, 50, 200, 130);
                 case "B" -> {
                     int quantBFree = itens.get("E") != null ? itens.get("E") / 2 : 0;
                     int quant = itens.get(sku) >= quantBFree ? itens.get(sku) - quantBFree : 0;
-                    int quantSpecialOffers = quant / 2;
-                    int quantNormalValue = quant - quantSpecialOffers * 2;
-                    total += quantSpecialOffers * 45 + quantNormalValue * 30;
+                    total += this.specialOffer(quant, 2, 30, 45);
                 }
                 case "C" -> total += itens.get(sku) * 20;
                 case "D" -> total += itens.get(sku) * 15;
                 case "E" -> total += itens.get(sku) * 40;
                 case "F" -> {
                     if (itens.get(sku) >= 3) {
-                        int quantSpecialOffers = itens.get(sku) / 3;
-                        int quantNormalValue = itens.get(sku) - quantSpecialOffers * 3;
-                        total += quantSpecialOffers * 20 + quantNormalValue * 10;
+                        total += this.specialOffer(itens.get(sku), 3, 10, 20);
                     } else {
                         total += itens.get(sku) * 10;
                     }
@@ -62,4 +53,26 @@ public class CheckoutSolution {
         System.out.println("total final: " + total);
         return total;
     }
+
+    private Integer specialOffer(int quant, int quantOffer, int price, int offerPrice) {
+        int quantSpecialOffers = quant / quantOffer;
+        int quantNormalValue = quant - quantSpecialOffers * quantOffer;
+        return quantSpecialOffers * offerPrice + quantNormalValue * price;
+    }
+
+    private Integer doubleSpecialOffer(
+            int quant,
+            int quantOfferOne,
+            int quantOfferTwo,
+            int price,
+            int offerPriceOne,
+            int offerPriceTwo
+    ) {
+        int quantSpecialOffersOne = quant / quantOfferOne;
+        int quantSpecialOffersTwo = (quant - quantSpecialOffersOne * quantOfferOne) / quantOfferTwo;
+        int quantNormalValue = quant - quantSpecialOffersOne * quantOfferOne - quantSpecialOffersTwo * quantOfferTwo;
+        return quantSpecialOffersOne * offerPriceOne + quantSpecialOffersTwo * offerPriceTwo + quantNormalValue * price;
+    }
+
 }
+
