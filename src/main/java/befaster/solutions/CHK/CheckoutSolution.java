@@ -44,10 +44,7 @@ public class CheckoutSolution {
                 }
                 case "C" -> total += itens.get(sku) * 20;
                 case "D" -> total += itens.get(sku) * 15;
-                case "E" -> {
-                    quantNormalValue = itens.get(sku) % 2;
-                    total += quantNormalValue * 40;
-                }
+                case "E" -> total += itens.get(sku) * 40;
                 default -> {
                     return -1;
                 }
@@ -58,4 +55,5 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
