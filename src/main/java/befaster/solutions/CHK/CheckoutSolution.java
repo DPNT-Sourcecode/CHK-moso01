@@ -91,10 +91,10 @@ public class CheckoutSolution {
         sku.append("T".repeat(itens.get("T") != null ? itens.get("T") : 0));
         sku.append("Y".repeat(itens.get("Y") != null ? itens.get("Y") : 0));
         sku.append("X".repeat(itens.get("X") != null ? itens.get("X") : 0));
-        System.out.println(sku);
         int groups = sku.length() / 3;
         value += groups * 45;
-        String newSku = groups > 0 ? sku.substring(sku.length()) : sku.toString();
+        String newSku = groups > 0 ? sku.substring(groups * 3) : sku.toString();
+        System.out.println(newSku);
         for (int i = 0; i < newSku.length(); i++) {
             String iten = String.valueOf(newSku.charAt(i));
             switch (iten) {
@@ -134,7 +134,3 @@ public class CheckoutSolution {
     }
 
 }
-
-
-
-
