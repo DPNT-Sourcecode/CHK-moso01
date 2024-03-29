@@ -88,7 +88,12 @@ public class CheckoutSolution {
         return total;
     }
 
-    private Integer specialOffer(int quant, int quantOffer, int price, int offerPrice) {
+    private Integer specialOffer(
+            int quant,
+            int quantOffer,
+            int price,
+            int offerPrice
+    ) {
         int quantSpecialOffers = quant / quantOffer;
         int quantNormalValue = quant - quantSpecialOffers * quantOffer;
         return quantSpecialOffers * offerPrice + quantNormalValue * price;
@@ -109,3 +114,4 @@ public class CheckoutSolution {
     }
 
 }
+
