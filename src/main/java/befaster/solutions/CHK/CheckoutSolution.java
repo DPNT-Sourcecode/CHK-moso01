@@ -95,7 +95,7 @@ public class CheckoutSolution {
         }
         int groups = newSkus.length() / 3;
         value += groups * 45;
-        String newSku = skus.substring(newSkus.length());
+        String newSku = groups > 0 ? skus.substring(newSkus.length()) : skus;
         for (int i = 0; i < newSku.length(); i++) {
             String iten = String.valueOf(skus.charAt(i));
             switch (iten) {
@@ -135,5 +135,6 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
