@@ -85,41 +85,25 @@ public class CheckoutSolution {
 
     private int verifyDescount(String skus) {
         int value = 0;
-        int group = 0;
-        int finalPositionGroup = 0;
+        StringBuilder newSkus = new StringBuilder();
         List<String> list = List.of("S", "T", "X", "Y", "Z");
         for (int i = 0; i < skus.length(); i++) {
             String iten = String.valueOf(skus.charAt(i));
             if (list.contains(iten)) {
-                if (group == 0) {
-                    switch (iten) {
-                        case "S" -> value += 20;
-                        case "T" -> value += 20;
-                        case "X" -> value += 17;
-                        case "Y" -> value += 20;
-                        case "Z" -> value += 21;
-                    }
-                }
-                group++;
-            }
-            if (group == 3) {
-                value += 45;
-                group = 0;
-                finalPositionGroup = i;
+                newSkus.append(iten);
             }
         }
-        if (finalPositionGroup > 0 && (finalPositionGroup + 1 < skus.length())) {
-            String newSku = skus.substring(finalPositionGroup + 1);
-            System.out.println(newSku);
-            for (int i = 0; i < newSku.length(); i++) {
-                String iten = String.valueOf(skus.charAt(i));
-                switch (iten) {
-                    case "S" -> value += 20;
-                    case "T" -> value += 20;
-                    case "X" -> value += 17;
-                    case "Y" -> value += 20;
-                    case "Z" -> value += 21;
-                }
+        int groups = newSkus.length() / 3;
+        value += groups * 45;
+        String newSku = skus.substring(newSkus.length());
+        for (int i = 0; i < newSku.length(); i++) {
+            String iten = String.valueOf(skus.charAt(i));
+            switch (iten) {
+                case "S" -> value += 20;
+                case "T" -> value += 20;
+                case "X" -> value += 17;
+                case "Y" -> value += 20;
+                case "Z" -> value += 21;
             }
         }
         return value;
@@ -151,4 +135,5 @@ public class CheckoutSolution {
     }
 
 }
+
 
