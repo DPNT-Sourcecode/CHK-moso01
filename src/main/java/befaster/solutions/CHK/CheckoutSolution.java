@@ -79,25 +79,24 @@ public class CheckoutSolution {
                 }
             }
         }
-        total += this.verifyDescount(skus);
+        total += this.verifyDescount(itens);
         return total;
     }
 
-    private int verifyDescount(String skus) {
+    private int verifyDescount(Map<String, Integer> itens) {
         int value = 0;
-        StringBuilder newSkus = new StringBuilder();
-        List<String> list = List.of("S", "T", "X", "Y", "Z");
-        for (int i = 0; i < skus.length(); i++) {
-            String iten = String.valueOf(skus.charAt(i));
-            if (list.contains(iten)) {
-                newSkus.append(iten);
-            }
-        }
-        int groups = newSkus.length() / 3;
+        StringBuilder sku = new StringBuilder();
+        sku.append("Z".repeat(itens.get("Z") != null ? itens.get("Z") : 0));
+        sku.append("S".repeat(itens.get("S") != null ? itens.get("S") : 0));
+        sku.append("T".repeat(itens.get("T") != null ? itens.get("T") : 0));
+        sku.append("Y".repeat(itens.get("Y") != null ? itens.get("Y") : 0));
+        sku.append("X".repeat(itens.get("X") != null ? itens.get("X") : 0));
+        System.out.println(sku);
+        int groups = sku.length() / 3;
         value += groups * 45;
-        String newSku = groups > 0 ? skus.substring(newSkus.length()) : skus;
+        String newSku = groups > 0 ? sku.substring(sku.length()) : sku.toString();
         for (int i = 0; i < newSku.length(); i++) {
-            String iten = String.valueOf(skus.charAt(i));
+            String iten = String.valueOf(newSku.charAt(i));
             switch (iten) {
                 case "S" -> value += 20;
                 case "T" -> value += 20;
@@ -135,6 +134,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
