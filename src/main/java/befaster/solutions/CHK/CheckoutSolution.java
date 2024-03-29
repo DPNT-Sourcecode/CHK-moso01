@@ -28,11 +28,15 @@ public class CheckoutSolution {
                 case "A" -> {
                     quantSpecialOffers = itens.get(sku) / 3;
                     quantNormalValue = itens.get(sku) % 3;
+                    System.out.println("quantSpecialOffers: " + quantSpecialOffers);
+                    System.out.println("quantNormalValue: " + quantNormalValue);
                     total += quantSpecialOffers * 130 + quantNormalValue * 50;
                 }
                 case "B" -> {
                     quantSpecialOffers = itens.get(sku) / 2;
                     quantNormalValue = itens.get(sku) % 2;
+                    System.out.println("quantSpecialOffers: " + quantSpecialOffers);
+                    System.out.println("quantNormalValue: " + quantNormalValue);
                     total += quantSpecialOffers * 45 + quantNormalValue * 30;
                 }
                 case "C" -> total += itens.get(sku) * 20;
@@ -43,5 +47,6 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
