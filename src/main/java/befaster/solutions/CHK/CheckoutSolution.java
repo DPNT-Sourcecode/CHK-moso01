@@ -108,11 +108,10 @@ public class CheckoutSolution {
                 finalPositionGroup = i;
             }
         }
-        finalPositionGroup = finalPositionGroup > 0 ? finalPositionGroup + 1 : 0;
-        System.out.println(finalPositionGroup);
-        System.out.println(skus.length());
-        if (skus.length() < 4 && finalPositionGroup < skus.length()) {
-            for (int i = finalPositionGroup; i < skus.length(); i++) {
+        if (finalPositionGroup > 0) {
+            String newSku = skus.substring(finalPositionGroup * 4);
+            System.out.println(newSku);
+            for (int i = 0; i < newSku.length(); i++) {
                 String iten = String.valueOf(skus.charAt(i));
                 switch (iten) {
                     case "S" -> value += 20;
@@ -152,6 +151,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
