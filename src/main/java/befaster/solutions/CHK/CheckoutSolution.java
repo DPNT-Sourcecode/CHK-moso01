@@ -103,11 +103,16 @@ public class CheckoutSolution {
                     if (priceUpdate) {
                         total += this.specialOffer(itens.get(sku), 3, 20, 45);
                     } else {
-
+                        total += itens.get(sku) * 20;
                     }
                 }
                 case "Z" -> {
-                    total += itens.get(sku) * 21;
+                    priceUpdate = itens.get(sku) != null || priceUpdate;
+                    if (priceUpdate) {
+                        total += this.specialOffer(itens.get(sku), 3, 20, 45);
+                    } else {
+                        total += itens.get(sku) * 21;
+                    }
                 }
                 default -> {
                     return -1;
@@ -145,4 +150,5 @@ public class CheckoutSolution {
     }
 
 }
+
 
