@@ -102,7 +102,7 @@ public class CheckoutSolution {
                 }
                 group++;
             }
-            if (group == 4) {
+            if (group == 3) {
                 value += 45;
                 group = 0;
                 finalPositionGroup = i;
@@ -151,9 +151,3 @@ public class CheckoutSolution {
     }
 
 }
-
-
-
-
-
-
