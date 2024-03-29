@@ -109,7 +109,7 @@ public class CheckoutSolution {
             }
         }
         if (finalPositionGroup > 0) {
-            String newSku = skus.substring(finalPositionGroup * 4);
+            String newSku = skus.substring(finalPositionGroup);
             System.out.println(newSku);
             for (int i = 0; i < newSku.length(); i++) {
                 String iten = String.valueOf(skus.charAt(i));
@@ -151,6 +151,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
