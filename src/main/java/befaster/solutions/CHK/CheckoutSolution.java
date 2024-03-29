@@ -35,7 +35,7 @@ public class CheckoutSolution {
                     total += quantSpecialOffersOne * 200 + quantSpecialOffersTwo * 130 + quantNormalValue * 50;
                 }
                 case "B" -> {
-                    int quantBFree = itens.get("E") / 2;
+                    int quantBFree = itens.get("E") != null ? itens.get("E") / 2 : 0;
                     int quant = itens.get(sku) >= quantBFree ? itens.get(sku) - quantBFree : 0;
                     int quantSpecialOffers = quant / 2;
                     int quantNormalValue = quant - quantSpecialOffers * 2;
@@ -54,5 +54,6 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
