@@ -27,6 +27,7 @@ public class CheckoutSolution {
         }
         for (String sku : itens.keySet()) {
             System.out.println(sku + ": " + itens.get(sku));
+            boolean priceUpdate = false;
             switch (sku) {
                 case "A" -> total += this.doubleSpecialOffer(itens.get(sku), 5, 3, 50, 200, 130);
                 case "B" -> {
@@ -88,7 +89,7 @@ public class CheckoutSolution {
         return total;
     }
 
-    private Integer specialOffer(
+    private int specialOffer(
             int quant,
             int quantOffer,
             int price,
@@ -99,7 +100,7 @@ public class CheckoutSolution {
         return quantSpecialOffers * offerPrice + quantNormalValue * price;
     }
 
-    private Integer doubleSpecialOffer(
+    private int doubleSpecialOffer(
             int quant,
             int quantOfferOne,
             int quantOfferTwo,
@@ -114,4 +115,5 @@ public class CheckoutSolution {
     }
 
 }
+
 
